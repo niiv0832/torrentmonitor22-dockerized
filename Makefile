@@ -1,5 +1,5 @@
 -include env
-NAMESPACE := nawa
+NAMESPACE := aldemion
 SHA := $(shell git rev-parse --short HEAD)
 timestamp := $(shell date +"%Y%m%d%H%M")
 
