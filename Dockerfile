@@ -28,6 +28,7 @@ RUN apk update \
     && apk --no-cache add nginx php5-common php5-cli php5-fpm php5-curl php5-sqlite3 php5-pdo_sqlite php5-iconv php5-json php5-ctype php5-zip \
     && wget -q http://korphome.ru/torrent_monitor/tm-latest.zip -O /tmp/tm-latest.zip \
     && unzip /tmp/tm-latest.zip -d /tmp/ \
+    && rm -f /tmp/TorrentMonitor-master/config.php \
     && mv /tmp/TorrentMonitor-master/* /data/htdocs \
     && cat /data/htdocs/db_schema/sqlite.sql | sqlite3 /data/htdocs/db_schema/tm.sqlite \
     && mkdir -p /var/log/nginx/ \
