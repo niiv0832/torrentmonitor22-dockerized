@@ -7,7 +7,7 @@ MAINTAINER Siarhei Navatski <navatski@gmail.com>, Andrey Aleksandrov <alex.demio
 #------------------------------------------------------------------------------
 # Environment variables:
 #------------------------------------------------------------------------------
-ENV VERSION="1.7.3" \
+ENV VERSION="1.7.4" \
     RELEASE_DATE="19.11.2017" \
     CRON_TIMEOUT="0 * * * *" \
     PHP_TIMEZONE="UTC" \
