@@ -27,8 +27,8 @@ RUN apk update \
     && apk --no-cache add --update -t deps wget unzip sqlite build-base tar re2c make file curl py2-pip python2-dev \
     && apk --no-cache add nginx php5-common php5-cli php5-fpm php5-curl php5-sqlite3 php5-mysql php5-pdo_sqlite php5-iconv php5-json php5-ctype php5-zip \
     && apk --no-cache --repository http://nl.alpinelinux.org/alpine/edge/testing add deluge \
-    && pip install --no-cache-dir -U incremental pip \
-    && pip install --no-cache-dir -U crypto mako markupsafe pyopenssl service_identity six twisted zope.interface \
+    && pip install --no-cache-dir -U automat incremental pip \
+    && pip install --no-cache-dir -U crypto mako markupsafe pyopenssl constantly service_identity six twisted zope.interface \
     && wget -q http://korphome.ru/torrent_monitor/tm-latest.zip -O /tmp/tm-latest.zip \
     && unzip /tmp/tm-latest.zip -d /tmp/ \
     && rm -f /tmp/TorrentMonitor-master/config.php \
