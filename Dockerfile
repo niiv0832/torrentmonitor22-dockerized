@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
-FROM alpine:3.7
+FROM alpine:3.6
 MAINTAINER Siarhei Navatski <navatski@gmail.com>, Andrey Aleksandrov <alex.demion@gmail.com>, Roman Smirnov <roman@smirnov.tk>
 
 #------------------------------------------------------------------------------
