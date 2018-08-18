@@ -1,6 +1,6 @@
 [[RU]](./README-RU.md) Dockerized torrentmonitor
 ========
-[![Build Status](https://travis-ci.org/AlDemion/torrentmonitor-dockerized.svg?branch=master)](https://travis-ci.org/AlDemion/torrentmonitor-dockerized)
+[![Build Status](https://travis-ci.com/Jeronyson/torrentmonitor-dockerized.svg?branch=master)](https://travis-ci.com/Jeronyson/torrentmonitor-dockerized)
 
 Info about project - https://github.com/ElizarovEugene/TorrentMonitor
 
