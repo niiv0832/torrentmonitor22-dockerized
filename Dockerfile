@@ -11,8 +11,7 @@ ENV VERSION="1.7.7" \
     RELEASE_DATE="06.08.2018" \
     CRON_TIMEOUT="0 * * * *" \
     PHP_TIMEZONE="UTC" \
-    PHP_MEMORY_LIMIT="512M" \
-    LD_PRELOAD="/usr/local/lib/preloadable_libiconv.so"
+    PHP_MEMORY_LIMIT="512M"
 
 #------------------------------------------------------------------------------
 # Populate root file system:
@@ -37,12 +36,10 @@ RUN apk update \
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && ln -sf /dev/stdout /var/log/php-fpm.log \
-    && rm /usr/bin/iconv \
-    && curl -SL https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.15.tar.gz | tar -xz -C /tmp \
-    && cd /tmp/libiconv-1.15 && patch -p1 < /tmp/iconv-patch.patch \
-    && ./configure --prefix=/usr/local \
-    && make && make install \
     && apk del --purge deps; rm -rf /tmp/* /var/cache/apk/*
+
+RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 #------------------------------------------------------------------------------
 # Set labels:
