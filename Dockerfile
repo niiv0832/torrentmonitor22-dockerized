@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Set the base image for subsequent instructions:
 #------------------------------------------------------------------------------
-FROM alpine:edge
+FROM alpine:3.7
 MAINTAINER Siarhei Navatski <navatski@gmail.com>, Andrey Aleksandrov <alex.demion@gmail.com>, Roman Smirnov <roman@smirnov.tk>
 
 #------------------------------------------------------------------------------
@@ -21,16 +21,14 @@ ADD rootfs /
 #------------------------------------------------------------------------------
 # Install:
 #------------------------------------------------------------------------------
-RUN apk update \
+RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+    && echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+    && apk update \
     && apk upgrade \
-    && apk add --no-cache --update -t deps wget unzip sqlite build-base tar re2c make file curl python2 py2-pip \
-    && apk add --no-cache nginx ca-certificates libressl2.7-libssl
-
-RUN apk upgrade -U && \
-    apk --update --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community add \
-    php7-common php7-cli php7-fpm php7-session php7-curl php7-sqlite3 php7-mysqli php7-pdo_sqlite php7-iconv php7-json php7-ctype php7-zip php7-simplexml \
-
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing deluge@testing \
+    && apk --no-cache add --update -t deps wget unzip sqlite build-base tar re2c make file curl python2 python2-dev py2-pip \
+    && apk --no-cache add nginx php7-common php7-cli php7-fpm php7-session php7-curl php7-sqlite3 php7-mysqli php7-pdo_sqlite php7-iconv php7-json php7-ctype php7-zip php7-xml php7-simplexml \
+    && apk add --no-cache boost-python@edge boost-system@edge libressl2.7-libcrypto@edge libressl2.7-libssl@edge \
+    && apk add --no-cache deluge@testing \
     && pip install --no-cache-dir automat incremental constantly service_identity \
     && wget -q http://tormon.ru/tm-latest.zip -O /tmp/tm-latest.zip \
     && unzip /tmp/tm-latest.zip -d /tmp/ \
@@ -42,6 +40,9 @@ RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/te
     && ln -sf /dev/stderr /var/log/nginx/error.log \
     && ln -sf /dev/stdout /var/log/php-fpm.log \
     && apk del --purge deps; rm -rf /tmp/* /var/cache/apk/*
+
+RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
 #------------------------------------------------------------------------------
 # Set labels:
