@@ -40,12 +40,6 @@ RUN apk update \
     && apk del --purge deps; rm -rf /tmp/* /var/cache/apk/*
 
 #------------------------------------------------------------------------------
-# iconv fix:
-#------------------------------------------------------------------------------
-RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing gnu-libiconv
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
-
-#------------------------------------------------------------------------------
 # Set labels:
 #------------------------------------------------------------------------------
 LABEL ru.korphome.version="${VERSION}" \
