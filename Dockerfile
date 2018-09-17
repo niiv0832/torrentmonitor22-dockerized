@@ -26,7 +26,7 @@ RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/re
     && apk update \
     && apk upgrade \
     && apk --no-cache add --update -t deps wget unzip sqlite build-base tar re2c make file curl python2 python2-dev py2-pip \
-    && apk --no-cache add nginx php7-common php7-cli php7-fpm php7-session php7-curl php7-sqlite3 php7-mysqli php7-pdo_sqlite php7-iconv php7-json php7-ctype php7-zip php7-xml php7-simplexml \
+    && apk --no-cache add nginx php7-common php7-cli php7-fpm php7-session php7-curl php7-sqlite3 php7-mysqli php7-pdo_sqlite php7-iconv php7-json php7-ctype php7-zip php7-xml php7-simplexml php7-mbstring \
     && apk add --no-cache boost-python@edge boost-system@edge libressl2.7-libcrypto@edge libressl2.7-libssl@edge \
     && apk add --no-cache deluge@testing \
     && pip install --no-cache-dir automat incremental constantly service_identity \
