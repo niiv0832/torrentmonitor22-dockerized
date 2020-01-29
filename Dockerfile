@@ -29,6 +29,7 @@ RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/
     apk --no-cache --update add -t deps wget unzip sqlite build-base tar re2c make file curl \
 ##   
     apk --no-cache --update add \
+    bash \
     nginx \
     php7-common \
     php7-cli \
