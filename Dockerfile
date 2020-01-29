@@ -26,7 +26,7 @@ RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/
     apk update && \
     apk upgrade && \
 #    && apk --no-cache add --update -t deps wget unzip sqlite build-base tar re2c make file curl python2 python2-dev py2-pip \
-    apk --no-cache --update add -t deps wget unzip sqlite build-base tar re2c make file curl \
+    apk --no-cache --update add --virtual .deps1 wget unzip sqlite build-base tar re2c make file curl \
 ##   
     apk --no-cache --update add \
     bash \
@@ -87,7 +87,7 @@ RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/
 #------------------------------------------------------------------------------
 # Clean
 #------------------------------------------------------------------------------     
-    apk del --purge deps; rm -rf /tmp/* /var/cache/apk/*
+    apk del --purge .deps1; rm -rf /tmp/* /var/cache/apk/*
 
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
